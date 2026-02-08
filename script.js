@@ -1,7 +1,15 @@
 // Mock Data - In a real app, this comes from a Database (SQL/Firebase)
 const studentDB = {
-    "JE2024-001": { name: "Alex Johnson", grades: { "Math": "A", "Physics": "B+" } },
-    "JE2024-002": { name: "Sam Smith", grades: { "Math": "B", "Physics": "A" } }
+    "JE2024-001": { name: "Alex Johnson", grades: { "Math": "A", "Physics": "B+", "History": "A-", "Biology": "B" } },
+    "JE2024-002": { name: "Sam Smith", grades: { "Math": "B", "Physics": "A", "Chemistry": "B+", "English": "A-" } },
+    "JE2024-003": { name: "Fatima Al-Farsi", grades: { "Math": "A-", "Physics": "A", "Arabic": "A+", "History": "B+" } },
+    "JE2024-004": { name: "Priya Patel", grades: { "Math": "A", "Biology": "A+", "Chemistry": "A", "English": "B+" } },
+    "JE2024-005": { name: "Chen Wei", grades: { "Math": "A+", "Physics": "A", "Chinese": "A", "Computer Science": "A-" } },
+    "JE2024-006": { name: "Maria Rodriguez", grades: { "Math": "B+", "Spanish": "A+", "History": "A", "Art": "A-" } },
+    "JE2024-007": { name: "David Kim", grades: { "Math": "A", "Physics": "A-", "Korean": "A+", "Music": "B+" } },
+    "JE2024-008": { name: "Amina Yusuf", grades: { "Math": "B", "English": "A", "French": "A-", "Geography": "A" } },
+    "JE2024-009": { name: "Luca Bianchi", grades: { "Math": "A-", "Italian": "A+", "History": "B+", "Philosophy": "A" } },
+    "JE2024-010": { name: "Sara Svensson", grades: { "Math": "A", "Swedish": "A+", "Biology": "A-", "English": "A" } }
 };
 
 // Simulated message storage
@@ -11,32 +19,19 @@ let messageHistory = [
 
 let currentUserId = null;
 
-function authorizeStudent() {
+
+window.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('authModal');
     const dashboard = document.getElementById('dashboard');
     const hero = document.querySelector('.hero');
-    let id = document.getElementById('studentIdInput').value.trim();
-    id = id.toUpperCase();
-    let foundId = null;
-    for (const key in studentDB) {
-        if (key.toUpperCase() === id) {
-            foundId = key;
-            break;
-        }
-    }
-    if (foundId) {
-        if (hero) hero.classList.add('hidden');
-        if (modal) modal.classList.add('hidden');
-        if (dashboard) dashboard.classList.remove('hidden');
-        loadStudentData(foundId);
-        currentUserId = foundId;
-        renderMessages(foundId);
-        document.getElementById('studentIdInput').value = '';
-    } else {
-        alert("Invalid University ID. Access Denied.");
-        document.getElementById('studentIdInput').focus();
-    }
-}
+    if (hero) hero.classList.add('hidden');
+    if (modal) modal.classList.add('hidden');
+    if (dashboard) dashboard.classList.remove('hidden');
+    const defaultId = 'JE2024-001';
+    loadStudentData(defaultId);
+    currentUserId = defaultId;
+    renderMessages(defaultId);
+});
 
 function loadStudentData(id) {
     const student = studentDB[id];
@@ -86,7 +81,6 @@ function renderMessages(filter) {
         `;
         chatBox.appendChild(msgDiv);
     });
-}
 }
 
 // Tab switching logic
