@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JE University | Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <nav>
+            <div class="logo">JE UNIVERSITY</div>
+            <ul>
+                <li>Home</li>
+                <li>Scholarship</li>
+                <li>Programs</li>
+                <button id="loginBtn">Student Login</button>
+            </ul>
+        </nav>
+        
+        <div class="hero-content">
+            <h1>JE UNIVERSITY</h1>
+            <p>THE CHARACTER OF SUCCESS</p>
+            <div class="quick-links">
+                <div class="card">Scholarship</div>
+                <div class="card">Our Campus</div>
+                <div class="card">Programs</div>
+            </div>
+        </div>
+    </header>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <h2>Student Access</h2>
+            <input type="text" id="studentIdInput" placeholder="Enter Unique Uni ID">
+            <button onclick="authorizeStudent()">Enter Dashboard</button>
+        </div>
+    </div>
+
+    <main id="dashboard" class="hidden">
+        <aside class="sidebar">
+            <h3 id="studentDisplay">Welcome, Student</h3>
+            <ul>
+                <li onclick="showTab('grades')">Subject Grades</li>
+                <li onclick="showTab('notifications')">Notifications</li>
+                <li onclick="showTab('messaging')">Messaging</li>
+            </ul>
+        </aside>
+
+        <section class="content-area">
+            <div id="grades" class="tab">
+                <h3>Academic Performance</h3>
+                <table>
+                    <thead><tr><th>Subject</th><th>Grade</th></tr></thead>
+                    <tbody id="gradeTable"></tbody>
+                </table>
+            </div>
+            
+            <div id="messaging" class="tab hidden">
+                <h3>Global Messenger</h3>
+                <textarea id="msgInput" placeholder="Type a message..."></textarea>
+                <button onclick="sendMessage()">Send to All</button>
+                <div id="chatBox"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
